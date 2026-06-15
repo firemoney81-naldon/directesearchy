@@ -1,23 +1,764 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
+
+
+  <!-- Schema.org 구조화 데이터 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://www.example.com/morning-insurance#webpage",
+        "url": "https://www.example.com/morning-insurance",
+        "name": "모닝자동차보험료 2026년형 종합 비교 및 예상 견적 가이드",
+        "description": "2026년 최신 모닝자동차보험료 분석. 올 뉴 모닝, 더 뉴 모닝, 모닝 어반 등 30여 개 세부 모델별 예상 가격 비교 및 저렴한 보험 가입 혜택 안내."
+      },
+      {
+        "@type": "FinancialProduct",
+        "@id": "https://www.example.com/morning-insurance#product",
+        "name": "모닝 자동차 보험",
+        "description": "대한민국 대표 경차 기아 모닝을 위한 맞춤형 자동차 보험 상품 비교 및 설계 서비스",
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "KRW",
+          "price": "350000"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://www.example.com/morning-insurance#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "모닝자동차보험료 평균 예상 금액은 얼마인가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "운전자의 연령과 무사고 경력에 따라 다릅니다. 보통 30대에서 40대 경력 운전자의 평균 비용은 30만원대에서 50만원대 사이로 책정되며, 최초 가입하는 20대 초반의 경우 100만원을 상회할 수 있습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "가장 저렴한곳을 찾는 합리적인 방법은 무엇인가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "다이렉트 전문 업체의 비교 견적 서비스를 활용하고 주행거리 할인, 블랙박스 할인, 안전운전 점수 할인 등 다양한 특약 혜택을 중복 적용하는 것이 좋습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "2026년 모닝 신형 모델의 보험료 산정 방식은 이전 모델과 어떻게 다른가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "2026년형 모닝 시그니처와 같은 최신 모델은 전방 충돌 방지 보조 등 첨단 운전자 보조 시스템 장착이 기본화되거나 옵션으로 제공되어 첨단 안전장치 장착 특약 할인을 폭넓게 적용받아 구형 모델 대비 자차 보험료가 일부 경감되는 효과를 볼 수 있습니다."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, table, tr, th, td, form, input, select, textarea, button, ul, li, section, header, footer, nav, label {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: #f3f7fa;
+      color: #2d3748;
+      line-height: 1.7;
+    }
+    header {
+      background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+      color: #ffffff;
+      padding: 50px 20px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      letter-spacing: -0.05em;
+    }
+    header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    nav {
+      margin-top: 30px;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      background-color: rgba(255, 255, 255, 0.15);
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      transition: background 0.2s ease-in-out;
+    }
+    nav a:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    section {
+      background-color: #ffffff;
+      border-radius: 12px;
+      padding: 40px;
+      margin-bottom: 35px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    }
+    h2 {
+      color: #1e3a8a;
+      font-size: 1.7rem;
+      margin-bottom: 25px;
+      border-bottom: 3px solid #e2e8f0;
+      padding-bottom: 12px;
+      font-weight: 700;
+    }
+    h3 {
+      color: #2c5282;
+      font-size: 1.3rem;
+      margin-top: 35px;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+    p {
+      margin-bottom: 20px;
+      text-align: justify;
+      font-size: 1rem;
+      color: #4a5568;
+    }
+    ul.bullet-list {
+      list-style-type: disc;
+      margin-left: 20px;
+      margin-bottom: 25px;
+    }
+    ul.bullet-list li {
+      margin-bottom: 10px;
+      color: #4a5568;
+    }
+    .accent-box {
+      background-color: #ebf8ff;
+      border-left: 4px solid #3182ce;
+      padding: 20px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 25px;
+    }
+    .accent-box p {
+      margin-bottom: 0;
+      color: #2b6cb0;
+      font-weight: 500;
+    }
+    .btn {
+      display: inline-block;
+      background-color: #319795;
+      color: #ffffff;
+      padding: 14px 28px;
+      border-radius: 6px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      text-align: center;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    .btn:hover {
+      background-color: #2c7a7b;
+      text-decoration: none;
+    }
+    .btn-secondary {
+      background-color: #4a5568;
+    }
+    .btn-secondary:hover {
+      background-color: #2d3748;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 30px 0;
+      background-color: #ffffff;
+    }
+    th {
+      background-color: #ebf8ff;
+      color: #2b6cb0;
+      font-weight: 600;
+      text-align: left;
+      border-bottom: 2px solid #cbd5e0;
+    }
+    th, td {
+      padding: 14px 18px;
+      border-bottom: 1px solid #e2e8f0;
+      font-size: 0.95rem;
+    }
+    tr:hover {
+      background-color: #f7fafc;
+    }
+    .form-group {
+      margin-bottom: 22px;
+    }
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #4a5568;
+    }
+    .form-control {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #cbd5e0;
+      border-radius: 6px;
+      font-size: 1rem;
+      color: #2d3748;
+      background-color: #f7fafc;
+      transition: border-color 0.2s;
+    }
+    .form-control:focus {
+      outline: none;
+      border-color: #3182ce;
+      background-color: #ffffff;
+      box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .badge-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 30px;
+    }
+    .badge {
+      background-color: #edf2f7;
+      color: #4a5568;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .badge:hover {
+      background-color: #e2e8f0;
+      text-decoration: none;
+    }
+    .calculator-card {
+      background-color: #ffffff;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 30px;
+    }
+    .result-box {
+      background-color: #f0fff4;
+      border: 1px solid #c6f6d5;
+      border-radius: 8px;
+      padding: 25px;
+      margin-top: 25px;
+      display: none;
+    }
+    .result-title {
+      color: #22543d;
+      font-weight: 700;
+      margin-bottom: 12px;
+      font-size: 1.1rem;
+    }
+    .visual-bar-container {
+      background-color: #edf2f7;
+      border-radius: 8px;
+      height: 28px;
+      position: relative;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+    .visual-bar {
+      background-color: #3182ce;
+      height: 100%;
+      border-radius: 8px;
+      text-align: right;
+      padding-right: 12px;
+      color: white;
+      font-size: 0.85rem;
+      line-height: 28px;
+      font-weight: 600;
+      transition: width 0.5s ease-in-out;
+    }
+    .visual-bar-label {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+      display: block;
+      color: #4a5568;
+    }
+    .link-list {
+      list-style-type: none;
+      padding: 0;
+    }
+    .link-list li {
+      margin-bottom: 12px;
+    }
+    .link-list a {
+      color: #2b6cb0;
+      font-weight: 500;
+      text-decoration: underline;
+    }
+    .link-list a:hover {
+      color: #1a365d;
+    }
+    footer {
+      background-color: #2d3748;
+      color: #a0aec0;
+      padding: 40px 20px;
+      text-align: center;
+      font-size: 0.9rem;
+      border-top: 5px solid #1a202c;
+    }
+    footer p {
+      text-align: center;
+      color: #a0aec0;
+      margin-bottom: 10px;
+    }
+    @media (max-width: 768px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+      section {
+        padding: 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>2026년 모닝자동차보험료 완전정복 가이드</h1>
+    <p>세부 모델별 평균 예상 금액과 비교 분석부터 가장 저렴한곳 가입 정보 및 온라인 추천 특약 혜택까지 종합 안내해 드립니다.</p>
     <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
+      <ul>
+        <li><a href="#quick-links">자동완성 검색어</a></li>
+        <li><a href="#estimator">실시간 모의 계산기</a></li>
+        <li><a href="#models-analysis">모델별 정밀 분석</a></li>
+        <li><a href="#premium-trends">연령별 요금 트렌드</a></li>
+        <li><a href="#pros-cons">장단점 및 차이점</a></li>
+        <li><a href="#discounts">특약 할인 비법</a></li>
+        <li><a href="#faq">자주 묻는 질문</a></li>
+      </ul>
     </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+  </header>
+
+  <div class="container">
+
+    <section id="quick-links">
+      <h2>함께 많이 찾는 주요 검색 정보</h2>
+      <p>인터넷 사용자들이 포털에서 모닝 자동차 보험을 확인하기 위해 자주 입력하는 연관 키워드 목록입니다. 각 항목을 통해 신뢰도 높은 상세 정보 구역으로 바로 이동하실 수 있습니다.</p>
+      <div class="badge-container">
+        <a href="#models-analysis" class="badge">모닝자동차보험료 평균 예상</a>
+        <a href="#premium-trends" class="badge">신규 가입 모닝 보험 비용</a>
+        <a href="#discounts" class="badge">다이렉트 자동차보험료 저렴한곳</a>
+        <a href="#pros-cons" class="badge">경차 보험 장단점 비교</a>
+        <a href="#faq" class="badge">나이대별 보험료 얼마</a>
+        <a href="#models-analysis" class="badge">더 뉴 모닝 견적 가격</a>
+        <a href="#models-analysis" class="badge">올 뉴 모닝 JA 보험 가입 혜택</a>
+        <a href="#discounts" class="badge">Tmap 안전운전 할인 특약</a>
+        <a href="#estimator" class="badge">모닝 자동차보험료 비교 추천</a>
+      </div>
+    </section>
+
+    <section id="estimator">
+      <h2>체류 시간을 고려한 정밀 모의 보험료 계산기</h2>
+      <p>본인의 나이, 소유하고 계신 모닝의 상세 모델, 운전 경력 및 가입하고자 하는 특약 조건을 직접 설정해 보세요. 하단의 선택 상자들을 입력하면 2026년도 통계 지표를 바탕으로 설계된 알고리즘을 통해 실시간으로 예상 견적 결과를 반환합니다. 꼼꼼히 선택해 보실수록 더욱 정밀한 모의 계산이 진행되므로 체류하며 세부 요건을 조정해 보시기 바랍니다.</p>
+      
+      <div class="calculator-card">
+        <form id="calcForm" onsubmit="calculatePremium(event)">
+          <div class="grid-2">
+            <div class="form-group">
+              <label for="driverName">이름</label>
+              <input type="text" id="driverName" class="form-control" placeholder="홍길동" required>
+            </div>
+            <div class="form-group">
+              <label for="driverPhone">연락처</label>
+              <input type="tel" id="driverPhone" class="form-control" placeholder="010-0000-0000" required>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="form-group">
+              <label for="driverAge">운전자 연령대 범위</label>
+              <select id="driverAge" class="form-control" required>
+                <option value="21">만 21세 이하 최초 가입자</option>
+                <option value="24">만 24세 이하 운전자</option>
+                <option value="26" selected>만 26세 이상 일반 운전자</option>
+                <option value="30">만 30세 이상 안정적 운전자</option>
+                <option value="43">만 43세 이상 장기 경력자</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="carModel">보유 중인 모닝 세부 모델</label>
+              <select id="carModel" class="form-control" required>
+                <option value="classic">2004년식 1세대 모닝 혹은 2008년식 뉴모닝</option>
+                <option value="ta">2011년식 올뉴모닝 혹은 2015년식 더뉴모닝</option>
+                <option value="ja" selected>2017년식 올뉴모닝 JA 혹은 2020년식 모닝어반</option>
+                <option value="new">2023년식 더뉴모닝 혹은 2024년형 신형 모닝</option>
+                <option value="premium">2025년형 모닝 디아트 혹은 2026년형 모닝 시그니처</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="form-group">
+              <label for="driverCareer">보험 가입 및 운전 경력</label>
+              <select id="driverCareer" class="form-control" required>
+                <option value="0">신규 가입 (경력 1년 미만)</option>
+                <option value="1">초보 가입 (경력 1년 이상 3년 미만)</option>
+                <option value="3" selected>우수 가입 (경력 3년 이상 무사고)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="driverRange">운전자 범위 한정 특약</label>
+              <select id="driverRange" class="form-control" required>
+                <option value="1.0">1인 한정 (기본)</option>
+                <option value="1.15">부부 한정 가입</option>
+                <option value="1.4">가족 모두 가입</option>
+                <option value="1.8">누구나 운전 가능</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>중복 적용 가능한 할인 특약 요건 선택</label>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-top: 5px;">
+              <label style="font-weight: normal; cursor: pointer;">
+                <input type="checkbox" id="chkMileage" checked> 마일리지 주행거리 할인
+              </label>
+              <label style="font-weight: normal; cursor: pointer;">
+                <input type="checkbox" id="chkBlackbox" checked> 블랙박스 장착 할인
+              </label>
+              <label style="font-weight: normal; cursor: pointer;">
+                <input type="checkbox" id="chkSafety"> 첨단 안전장치 장착 할인
+              </label>
+              <label style="font-weight: normal; cursor: pointer;">
+                <input type="checkbox" id="chkTmap"> Tmap 안전운전 점수 할인
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="calcDetails">기타 특이사항 및 문의 내용</label>
+            <textarea id="calcDetails" class="form-control" rows="3" placeholder="예: 무사고 경력 승계 여부나 추가 장비 장착 상태 등을 자유롭게 적어주세요."></textarea>
+          </div>
+
+          <div style="text-align: center; margin-top: 25px;">
+            <button type="submit" class="btn">맞춤형 실시간 견적 산출하기</button>
+          </div>
+        </form>
+
+        <div id="resultBox" class="result-box">
+          <p class="result-title">입력하신 정보를 분석한 시뮬레이션 결과</p>
+          <p id="resultText" style="font-weight: 500; margin-bottom: 15px;"></p>
+          
+          <div class="visual-bar-label">귀하의 조건별 예상 연간 보험료 수준 (시뮬레이션 수치)</div>
+          <div class="visual-bar-container">
+            <div id="simBar" class="visual-bar" style="width: 0%;">0원</div>
+          </div>
+
+          <div class="visual-bar-label">대한민국 모닝 가입자 평균 연간 요금 (비교 지표)</div>
+          <div class="visual-bar-container">
+            <div class="visual-bar" style="width: 48%; background-color: #a0aec0;">약 480,000원</div>
+          </div>
+          
+          <p style="font-size: 0.9rem; color: #718096; margin-top: 15px;">※ 위의 수치는 가상 시뮬레이션 값이며, 가입 시점의 보험 요율, 가입 경력 요율, 실제 할인 할인 조건에 따라 본 계약의 최종 결정 요금과는 차이가 있을 수 있으므로 전문 업체의 다이렉트 견적을 병행하여 참조하시기 바랍니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="models-analysis">
+      <h2>모닝 30개 세부 모델명 라인업별 보험 요율 정밀 분석</h2>
+      <p>기아자동차의 모닝 시리즈는 오랜 시간 동안 사랑받은 만큼 출시 연도 및 트림 옵션에 따라 보험 요율 분류 체계가 복잡하게 나뉩니다. 차량가액 산정에 결정적인 영향을 미치는 모닝의 30개 주요 세부 모델 및 트림 분류를 상세히 파악하면 연간 납부해야 하는 실제 보험 요금을 대략적으로 예측할 수 있습니다.</p>
+      
+      <p>세부 모델의 세대별 구분과 장착 트림은 다음과 같습니다. 각각의 모델명은 보험개발원의 등급에 연동되어 연간 자차 담보 산정의 변동 요인을 유발합니다.</p>
+
+      <div class="accent-box">
+        <p>1세대 라인업 대표 모델 : 2004년식 1세대 모닝, 2008년식 뉴모닝, 모닝 스마트, 모닝 디럭스, 모닝 수동 변속기 모델, 모닝 자동 변속기 모델</p>
+        <p style="margin-top: 10px; color: #2d3748;">특징: 차량가액이 매우 낮아 자차 손해 담보 금액은 저렴하게 산정되나 연식이 오래되어 고장 및 노후화로 인한 대인대물 보상 비율과 손해율이 소폭 가중되어 상대적으로 낮지 않은 기본 기본 요율이 적용될 수 있습니다.</p>
+      </div>
+
+      <div class="accent-box" style="background-color: #f0fff4; border-left-color: #38a169;">
+        <p style="color: #22543d;">2세대 라인업 대표 모델 : 2011년식 올뉴모닝, 2015년식 더뉴모닝, 2세대 올뉴모닝 TA, 모닝 가솔린 1.0, 올뉴모닝 바이퓨얼, 모닝 LPi 하이브리드, 모닝 터보 T-GDI, 모닝 럭셔리, 모닝 프레스티지, 모닝 밴, 모닝 스포츠 에디션, 모닝 에코다이나믹스</p>
+        <p style="margin-top: 10px; color: #2d3748;">특징: 바이퓨얼 및 LPi 가스 겸용 수송 수단 등이 본격 출시되며 경제성이 돋보였던 시기입니다. 중고 차량 거래가 매우 활발하여 부품 공급이 안정적이며, 이에 따라 차량 사고 시 자차 수리비 산정 기준에서 다른 수입 소형 차량 대비 저렴하게 수리가 가능하다는 장점이 존재합니다.</p>
+      </div>
+
+      <div class="accent-box" style="background-color: #fffaf0; border-left-color: #dd6b20;">
+        <p style="color: #744210;">3세대 및 최신 라인업 대표 모델 : 2017년식 올뉴모닝 JA, 2020년식 모닝어반, 2023년식 더뉴모닝, 2024년형 신형 모닝, 2025년형 모닝 디아트, 2026년형 모닝 시그니처, 3세대 모닝 JA, 모닝 트렌디, 모닝 에스테틱 플러스, 올뉴모닝 럭셔리 스타일, 더뉴모닝 럭셔리 스포츠, 모닝어반 스페셜 에디션</p>
+        <p style="margin-top: 10px; color: #2d3748;">특징: 최신 3세대 모닝 플랫폼 및 첨단 주행 안전 기술이 기본 탑재된 시그니처 트림들이 포함됩니다. 이 시기의 차량들은 자체 잔존가치가 높게 책정되어 자차 가입 비용은 다소 발생하지만, 전방 추돌 방지 및 차선 이탈 경고 등 능동형 예방 안전 시스템 덕분에 첨단 장치 추가 할인 혜택을 온전히 수혜받을 수 있습니다.</p>
+      </div>
+
+      <p>연도별 출고 및 판매 사양에 대응하는 30가지 상세 차종 및 키워드 요약 테이블입니다.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>번호</th>
+            <th>모닝 상세 세부 차종 및 트림명</th>
+            <th>차량 잔존 가치 분류</th>
+            <th>기본 보험 요율 기준</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>2004년식 1세대 모닝</td><td>매우 낮음</td><td>표준 기본요율 적용</td></tr>
+          <tr><td>2</td><td>2008년식 뉴모닝</td><td>매우 낮음</td><td>표준 기본요율 적용</td></tr>
+          <tr><td>3</td><td>2011년식 올뉴모닝</td><td>낮음</td><td>손해율 가중치 완화</td></tr>
+          <tr><td>4</td><td>2015년식 더뉴모닝</td><td>보통</td><td>우수 안전 등급 초입</td></tr>
+          <tr><td>5</td><td>2017년식 올뉴모닝 JA</td><td>보통 이상</td><td>지능형 보조 장치 연계</td></tr>
+          <tr><td>6</td><td>2020년식 모닝어반</td><td>안정적</td><td>예방 시스템 정식 할인</td></tr>
+          <tr><td>7</td><td>2023년식 더뉴모닝</td><td>높음</td><td>최신 규격 우대 혜택</td></tr>
+          <tr><td>8</td><td>2024년형 신형 모닝</td><td>매우 높음</td><td>신차 가입 프리미엄 및 할인</td></tr>
+          <tr><td>9</td><td>2025년형 모닝 디아트</td><td>매우 높음</td><td>신차 잔존가 반영 요율</td></tr>
+          <tr><td>10</td><td>2026년형 모닝 시그니처</td><td>최고 수준</td><td>최신 예방 시스템 특약 연계</td></tr>
+          <tr><td>11</td><td>모닝 가솔린 1.0</td><td>중고 시장 표준</td><td>일반 표준 요율 적용</td></tr>
+          <tr><td>12</td><td>올뉴모닝 바이퓨얼</td><td>경차 특화 연료형</td><td>가스 혼용 특별 위험 등급</td></tr>
+          <tr><td>13</td><td>모닝 LPi 하이브리드</td><td>고효율 친환경</td><td>친환경 차량 특별 요율</td></tr>
+          <tr><td>14</td><td>모닝 터보 T-GDI</td><td>고성능 버전</td><td>운전 위험 가산율 소폭 존재</td></tr>
+          <tr><td>15</td><td>모닝 스마트</td><td>기본형 엔트리</td><td>단순 자차 설계 위주</td></tr>
+          <tr><td>16</td><td>모닝 디럭스</td><td>기본형 편의</td><td>표준 가치 기준 책정</td></tr>
+          <tr><td>17</td><td>모닝 럭셔리</td><td>중간 고급형</td><td>보통 수준 가치 책정</td></tr>
+          <tr><td>18</td><td>모닝 프레스티지</td><td>상급 트림</td><td>각종 편의 센서 부착 할인</td></tr>
+          <tr><td>19</td><td>모닝 트렌디</td><td>실속 실용 트림</td><td>평균 가액 기준 설계</td></tr>
+          <tr><td>20</td><td>모닝 밴</td><td>화물 및 업무용</td><td>가입 대상 목적 한정 적용</td></tr>
+          <tr><td>21</td><td>모닝 수동 변속기 모델</td><td>기계적 단순 사양</td><td>자동 변속기 대비 자차액 낮음</td></tr>
+          <tr><td>22</td><td>모닝 자동 변속기 모델</td><td>대중적 사양</td><td>가장 폭넓은 표준 테이블 사용</td></tr>
+          <tr><td>23</td><td>모닝 스포츠 에디션</td><td>외장 특화형</td><td>외부 파츠 손상 시 부품가 감안</td></tr>
+          <tr><td>24</td><td>모닝 에스테틱 플러스</td><td>내장 패키지 장착</td><td>일부 자차 옵션 가액 상향</td></tr>
+          <tr><td>25</td><td>올뉴모닝 럭셔리 스타일</td><td>스타일 전용 패키지</td><td>차량 잔존가 표준 산정</td></tr>
+          <tr><td>26</td><td>더뉴모닝 럭셔리 스포츠</td><td>스포츠 바디킷 포함</td><td>소액 가산 비율 존재</td></tr>
+          <tr><td>27</td><td>모닝어반 스페셜 에디션</td><td>소량 한정 판매 사양</td><td>최신 플랫폼 안전도 반영</td></tr>
+          <tr><td>28</td><td>2세대 올뉴모닝 TA</td><td>다년간 스테디셀러</td><td>중고 연식 잔가 하향 안정화</td></tr>
+          <tr><td>29</td><td>3세대 모닝 JA</td><td>차체 강성 강화형</td><td>물리적 상해 리스크 반감 할인</td></tr>
+          <tr><td>30</td><td>모닝 에코다이나믹스</td><td>연비 개선 지향형</td><td>일반 규격 대비 소액 혜택 가능</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="premium-trends">
+      <h2>연령대 및 경력 조건별 보험료 통계 지표 분석</h2>
+      <p>모닝은 경제적인 성격이 강한 차종이기 때문에 운전자의 나이가 어떻게 구성되어 있는지와 그에 따른 경력이 가입 요금을 정하는 절대적인 요소가 됩니다. 최초 가입자 비율이 상대적으로 높다 보니 나이가 어린 구간과 중장년 운전자 구간 간의 납부 비용 격차가 매우 크게 벌어지는 특징을 보여줍니다.</p>
+      
+      <p>다음은 무사고 1인 운전자 기준으로 설계된 연간 종합 납부 금액 비교 테이블이며, 전적으로 각 직종 및 다이렉트 전문 서비스의 공식 산정 방식을 요약하였습니다.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>운전자 조건 분류</th>
+            <th>평균 예상 범위 (연간)</th>
+            <th>주요 위험 및 할인 적용 사유</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>만 21세 신규 면허 취득 가입</td>
+            <td>1,100,000원 – 1,600,000원</td>
+            <td>사고 이력 전무로 인한 신규 할증 적용, 높은 초기 손해 위험율 산출</td>
+          </tr>
+          <tr>
+            <td>만 26세 가입 및 1년 경력</td>
+            <td>650,000원 – 900,000원</td>
+            <td>만 26세 한정 특별 약정 돌입으로 요금 대폭 절감 구간 적용</td>
+          </tr>
+          <tr>
+            <td>만 30세 이상 무사고 가입자</td>
+            <td>380,000원 – 550,000원</td>
+            <td>연령 특약 우대 최적화, 보편적인 가입자들이 머무르는 표준 구간</td>
+          </tr>
+          <tr>
+            <td>만 45세 이상 베테랑 운전자</td>
+            <td>280,000원 – 420,000원</td>
+            <td>장기 무사고 경력 누적 및 주행거리 감축 특별 약정 결합에 의한 최저 금액</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>차량 자체의 크기는 소형이지만 신호 위반, 중앙선 침범 등의 대물대인 기본 배상 범위는 법적 강제 규격에 동일하게 묶이므로, 20대 초반 청년 세대의 경우 상대적으로 초기 가입 요금이 높게 책정되는 것입니다. 따라서 만 나이 변경 시점이나 경력 합산 증빙 여부를 놓치지 말고 손해보험 전문 제휴 사이트를 통해 점검해야 합니다.</p>
+    </section>
+
+    <section id="pros-cons">
+      <h2>경차 자동차 보험의 장점, 단점 및 타 차종과의 차이점</h2>
+      <p>모닝을 운용하며 발생하는 경차만의 특화된 보험 적용의 장단점과 더불어, 준중형 세단이나 SUV 차종과의 결정적인 차이점을 조목조목 짚고 넘어갈 필요가 있습니다.</p>
+
+      <h3>경차 보험 가입의 대표적인 장점</h3>
+      <ul class="bullet-list">
+        <li>취등록세 및 공채 매입 면제 혜택과 맞물려 자동차 소유 자체의 세금 부담이 낮고 책임보험 요율 범위도 유리하게 조율됩니다.</li>
+        <li>정부에서 제공하는 유류세 환급 카드 등과 같은 추가 세제 연계 프로모션을 누릴 수 있어 직접적인 유지비 체감이 뛰어납니다.</li>
+        <li>보험개발원의 부품 대체 수리율 등급 분류에서 높은 안정성을 부여받은 기아 모닝은 유사 사고 시 준중형 세단 대비 상대적으로 소액 수리 처리가 빈번하여 할증 우려가 적습니다.</li>
+      </ul>
+
+      <h3>안심할 수 없는 경차 보험의 단점 및 한계점</h3>
+      <ul class="bullet-list">
+        <li>차체의 질량이 낮고 후방 및 측면 추돌 시 탑승객에게 도달하는 충격량 전달 수준이 크다는 분석에 기반하여, 대인 상해 담보 부분의 순수 요율 자체는 아주 저렴하지만은 않습니다.</li>
+        <li>이 때문에 책임 및 자손담보를 최소 규격으로 가입하기보다는 가급적 대인 보상 무한대 구성 및 자기신체사고 대신 자동차상해를 채택하는 보수적 안전 전략이 강력히 요구됩니다.</li>
+        <li>기초적인 중고 가액이 빠르게 보존되지 못하고 낮아지는 특성 탓에 전손 사고 처리를 겪을 경우 환원되는 자차 보상 한도가 현저히 줄어들 수 있다는 점도 기억해야 합니다.</li>
+      </ul>
+
+      <h3>일반 준중형 승용 모델과의 세부 차이점</h3>
+      <p>아반떼나 K3와 같은 1600cc 급 준중형 세단은 차량가액 자체가 모닝 시그니처와 같은 최신 경차보다 높지만 세대별 승객 보호 수치가 높아 인적 위험 등급 점수는 낮게 설정됩니다. 반대로 모닝은 차량 본래 가격은 무척 저렴하여 물적 담보에서는 이득을 보지만 인적 담보에서는 준중형과 동일하거나 약 5퍼센트 가량 추가 요율이 상향 반영될 수 있다는 성질상의 차이점이 있으므로 다면적인 비교가 필요합니다.</p>
+    </section>
+
+    <section id="discounts">
+      <h2>가장 저렴한곳 가입을 위한 필수 특약 할인 가이드</h2>
+      <p>모닝자동차보험료는 기본 설계 상태로만 계약하게 되면 실제 혜택을 놓치고 손해를 보기 쉽습니다. 다음은 실질적으로 납부 비용을 대폭 낮출 수 있는 5가지 핵심 특별 약정 항목입니다.</p>
+
+      <h3>1. 마일리지 주행거리 한정 특약</h3>
+      <p>모닝은 도심 속 단거리 출퇴근이나 마트 장보기 전용으로 쓰이는 경우가 많습니다. 연간 3,000킬로미터에서 5,000킬로미터 미만으로 주행할 경우 납부한 총액의 최소 30퍼센트에서 최대 45퍼센트까지 만기 시 계좌로 현금지원 형식으로 환급받는 환상적인 혜택을 반드시 신청해야 합니다.</p>
+
+      <h3>2. T-map 및 카카오내비 안전운전 점수 연계 할인</h3>
+      <p>내비게이션 애플리케이션을 작동시킨 상태로 규정 속도를 준수하고 가속 및 제동을 절제하면 통상 80점 이상의 안전 점수가 적립됩니다. 이 점수 요건을 충족하면 메이저 손보사에서 약 11퍼센트에서 16퍼센트에 달하는 대폭적인 특별 할인을 즉시 차감해 줍니다.</p>
+
+      <h3>3. 블랙박스 및 지능형 첨단 안전장치 중복 적용</h3>
+      <p>구형 2011년식 올뉴모닝부터 최신의 2026년형 모닝 시그니처까지 차량에 전방 카메라 블랙박스가 장착되어 있다면 실시간 등록 시 약 2퍼센트 내외의 추가 감면을 받습니다. 아울러 차선이탈방지 보조, 전방충돌방지 보조 시스템 등이 순정으로 부착되어 있다면 추가적인 첨단 장치 할인 혜택도 더해집니다.</p>
+
+      <h3>4. 커뮤니티 추천 및 이벤트 참여를 활용한 비용 상쇄</h3>
+      <p>네이버 지식인, 구글 검색 포럼, 유튜브의 유익한 채널, 트위터, 인스타그램, 페이스북의 태그 공유 소식 등을 종합하면 상시 진행 중인 신규 가입 혜택과 주유 상품권 지급 소식을 파악할 수 있습니다. 특히 디시, 보배드림, 펨코, 에펨코리아의 자동차 게시판을 가득 메운 실제 회원들의 내돈내산 가입 수기나 추천 순위를 참고하면 현금지원 혜택을 풍성히 주는 저렴한곳에 대한 꿀팁을 습득할 수 있습니다.</p>
+
+      <h3>5. AI 기반의 제미나이 및 챗지피티 기술을 활용한 자문</h3>
+      <p>전통적인 수동 설계에 어려움을 느낀다면 제미나이나 챗지피티, ChatGPT, Gemini와 같은 고도화된 인공지능 플랫폼에 본인의 나이와 희망 담보 수준을 서술하여 최적의 저비용 분할 전략을 실시간으로 안내받는 방법도 현대적인 노하우 중 하나로 꼽힙니다.</p>
+    </section>
+
+    <section id="community-insight">
+      <h2>인터넷 커뮤니티의 실전 후기 및 추천 트렌드 요약</h2>
+      <p>차량 동호회인 보배드림이나 디시인사이드 차갤, 펨코와 같은 젊은 층 위주의 사이트에서 공통적으로 회자하는 모닝 관리론의 핵심은 실속주의입니다. 고가의 프리미엄 담보보다는 불필요한 약정을 덜어내고 다이렉트 전문 채널을 통해 불필요한 중간 마진을 제거하는 것이 핵심 과제입니다.</p>
+      
+      <p>내돈내산 후기들을 종합해 보면, 대형 브랜드 간의 금액 편차는 연간 기준 약 3만원에서 7만원 수준으로 확인되며, 일부 중소형 제휴 업체에서는 가입 첫해 고객을 유치하기 위해 네이버페이 포인트 증정, 스타벅스 기프티콘, 대형마트 상품권 지급 이벤트를 적극적으로 선보이고 있습니다. 이렇듯 소소한 부가 혜택을 살뜰하게 챙기는 것 또한 전체적인 실질 지출 가격을 하향 조절하는 스마트한 요령입니다.</p>
+    </section>
+
+    <section id="faq">
+      <h2>모닝자동차보험료 관련 자주 묻는 질문 (FAQ)</h2>
+      
+      <div style="margin-bottom: 25px;">
+        <h3 style="color: #2c5282; border-left: 3px solid #319795; padding-left: 10px;">질문: 모닝자동차보험의 평균 연간 납부 비용은 대략 얼마 수준인가요?</h3>
+        <p style="margin-top: 8px;">답변: 30대 중반 이상의 오랜 경력을 지닌 무사고 안전 운전자 기준으로 대략적인 예상 범위는 30만원대 중후반에서 50만원대 안팎입니다. 다만 만 21세 이하 최초 등록자라면 위험 요율의 누적으로 인해 초기 가입 시 대략 120만원 내외의 높은 청구액을 받으실 수 있으므로 가족 한정이나 경력 승계 요건을 지혜롭게 활용하는 조치가 필수적입니다.</p>
+      </div>
+
+      <div style="margin-bottom: 25px;">
+        <h3 style="color: #2c5282; border-left: 3px solid #319795; padding-left: 10px;">질문: 가장 저렴하고 싼곳을 현명하게 선택하는 순서는 무엇인가요?</h3>
+        <p style="margin-top: 8px;">답변: 우선 대면 대리점을 배제하고 손해보험 각사의 온라인 다이렉트 전용 플랫폼을 일괄 비교해야 합니다. 모바일 전용 할인 특약은 물론이고 모닝에 기본 설치된 스마트 주행 보조 장치를 자진 등록하여 추가 차감을 받아내는 것이 지름길입니다.</p>
+      </div>
+
+      <div style="margin-bottom: 25px;">
+        <h3 style="color: #2c5282; border-left: 3px solid #319795; padding-left: 10px;">질문: 신규 가입 시 주어지는 상품권 지급 등 이벤트 사은품은 무한정 적용되나요?</h3>
+        <p style="margin-top: 8px;">답변: 보험업법 시행령 기준에 따라 일정한 수준 이내의 가치 범위에서만 사은품이나 제휴 현금지원이 원칙적으로 제공됩니다. 지나치게 법정 한도를 벗어나는 허위 사은 행위 약속 등은 규제 대상이므로 신뢰할 수 있는 공식 온라인 채널에서 공지하는 일정을 통해 정당한 사은품 혜택을 수령하는 것을 권장합니다.</p>
+      </div>
+
+      <div style="margin-bottom: 25px;">
+        <h3 style="color: #2c5282; border-left: 3px solid #319795; padding-left: 10px;">질문: 모닝 가솔린 모델과 바이퓨얼 가스 겸용 모델 간의 보험료 차이가 있습니까?</h3>
+        <p style="margin-top: 8px;">답변: 예, 존재합니다. 액화석유가스를 병용하거나 기계 장치 구성이 독자적인 모닝 바이퓨얼 및 LPi 모델은 가솔린 1.0 순수 내연기관 모델과 비교했을 때 차량 가치 산출 등급과 물리적 사고 위험 요율 가산점이 소폭 다르게 적용됩니다. 통상적으로 수만 원 안팎의 작고 미미한 등급 차이에 기반하므로 실제 적용되는 기본 차액을 개별 견적서를 뽑아 대조해 보시는 편이 가장 확실합니다.</p>
+      </div>
+    </section>
+
+    <section id="trust-links">
+      <h2>공인된 신뢰성 높은 자동차 관련 외부 리소스 센터</h2>
+      <p>대한민국의 올바른 자동차 운용 질서 수립과 금융 소비자의 권익 신장을 위해 법적으로 감독을 맡고 있거나 대외 공신력이 완벽히 공인된 기관의 공식 누리집을 안내해 드립니다. 광고성 링크가 아닌 정부 및 학술 연구기관의 도메인이므로 접속하시어 상세 정보를 교차 점검해 보시기 바랍니다.</p>
+      <ul class="link-list">
+        <li><a href="https://fine.fss.or.kr" target="_blank" rel="noopener noreferrer">금융감독원 파인 금융소비자 포털 사이트 바로가기</a></li>
+        <li><a href="https://www.kidi.or.kr" target="_blank" rel="noopener noreferrer">보험개발원 공식 기술연구 및 차량 모델 등급 조회</a></li>
+        <li><a href="https://www.car365.go.kr" target="_blank" rel="noopener noreferrer">국토교통부 자동차365 통합 정보 서비스 포털</a></li>
+        <li><a href="https://kpub.knia.or.kr" target="_blank" rel="noopener noreferrer">손해보험협회 공식 상품 비교공시 시스템</a></li>
+        <li><a href="https://namu.wiki/w/%EA%B8%B0%EC%95%84%20%EB%AA%A8%EB%8B%9D" target="_blank" rel="noopener noreferrer">나무위키 기아 모닝 연도별 모델 변천사 일람</a></li>
+      </ul>
+    </section>
+
+  </div>
+
+  <script>
+    function calculatePremium(event) {
+      event.preventDefault();
+      
+      const name = document.getElementById('driverName').value;
+      const ageVal = parseInt(document.getElementById('driverAge').value);
+      const modelVal = document.getElementById('carModel').value;
+      const careerVal = parseInt(document.getElementById('driverCareer').value);
+      const rangeVal = parseFloat(document.getElementById('driverRange').value);
+      
+      const isMileage = document.getElementById('chkMileage').checked;
+      const isBlackbox = document.getElementById('chkBlackbox').checked;
+      const isSafety = document.getElementById('chkSafety').checked;
+      const isTmap = document.getElementById('chkTmap').checked;
+
+      let basePremium = 700000;
+
+      if (ageVal === 21) {
+        basePremium = 1350000;
+      } else if (ageVal === 24) {
+        basePremium = 950000;
+      } else if (ageVal === 26) {
+        basePremium = 650000;
+      } else if (ageVal === 30) {
+        basePremium = 480000;
+      } else if (ageVal === 43) {
+        basePremium = 390000;
+      }
+
+      if (modelVal === 'classic') {
+        basePremium -= 50000;
+      } else if (modelVal === 'ta') {
+        basePremium -= 20000;
+      } else if (modelVal === 'new') {
+        basePremium += 40000;
+      } else if (modelVal === 'premium') {
+        basePremium += 80000;
+      }
+
+      if (careerVal === 0) {
+        basePremium += 250000;
+      } else if (careerVal === 1) {
+        basePremium += 80000;
+      } else if (careerVal === 3) {
+        basePremium -= 100000;
+      }
+
+      basePremium = basePremium * rangeVal;
+
+      let discountMultiplier = 1.0;
+      if (isMileage) discountMultiplier -= 0.35;
+      if (isBlackbox) discountMultiplier -= 0.04;
+      if (isSafety) discountMultiplier -= 0.05;
+      if (isTmap) discountMultiplier -= 0.12;
+
+      let finalPremium = Math.round(basePremium * discountMultiplier);
+      if (finalPremium < 250000) {
+        finalPremium = 250000;
+      }
+
+      const formattedPremium = finalPremium.toLocaleString();
+
+      const resultBox = document.getElementById('resultBox');
+      const resultText = document.getElementById('resultText');
+      const simBar = document.getElementById('simBar');
+
+      resultText.textContent = name + ' 고객님의 모닝자동차보험료 예상 기본 견적 금액은 연간 약 [' + formattedPremium + '원] 수준으로 분석됩니다.';
+      resultBox.style.display = 'block';
+
+      let maxScale = 1600000;
+      let percent = Math.min((finalPremium / maxScale) * 100, 100);
+      
+      simBar.style.width = percent + '%';
+      simBar.textContent = formattedPremium + '원';
+
+      window.scrollTo({
+        top: resultBox.offsetTop + 100,
+        behavior: 'smooth'
+      });
+    }
+  </script>
+  
